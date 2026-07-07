@@ -1,6 +1,6 @@
 import Foundation
 
-struct WorkoutPlan: Identifiable, Hashable, Codable {
+struct WorkoutPlan: Identifiable, Hashable {
     let id: UUID
     var name: String
     var intervals: [Interval]

@@ -17,6 +17,9 @@
 		0A0000010000000000000008 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000108 /* SessionManager.swift */; };
 		0A0000010000000000000009 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000109 /* HomeViewModel.swift */; };
 		0A000001000000000000000A /* ActiveSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000001000000000000010A /* ActiveSessionViewModel.swift */; };
+		0A0000010000000000000013 /* MotionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000116 /* MotionService.swift */; };
+		0A0000010000000000000014 /* SessionHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000117 /* SessionHistoryStore.swift */; };
+		0A0000010000000000000015 /* PreviousSessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0000010000000000000118 /* PreviousSessionsView.swift */; };
 		0A000001000000000000000B /* RowFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000001000000000000010B /* RowFormatting.swift */; };
 		0A000001000000000000000C /* SplitCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000001000000000000010C /* SplitCalculator.swift */; };
 		0A000001000000000000000D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A000001000000000000010D /* HomeView.swift */; };
@@ -38,6 +41,9 @@
 		0A0000010000000000000108 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		0A0000010000000000000109 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0A000001000000000000010A /* ActiveSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSessionViewModel.swift; sourceTree = "<group>"; };
+		0A0000010000000000000116 /* MotionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionService.swift; sourceTree = "<group>"; };
+		0A0000010000000000000117 /* SessionHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionHistoryStore.swift; sourceTree = "<group>"; };
+		0A0000010000000000000118 /* PreviousSessionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSessionsView.swift; sourceTree = "<group>"; };
 		0A000001000000000000010B /* RowFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowFormatting.swift; sourceTree = "<group>"; };
 		0A000001000000000000010C /* SplitCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitCalculator.swift; sourceTree = "<group>"; };
 		0A000001000000000000010D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -99,7 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				0A0000010000000000000107 /* LocationService.swift */,
+				0A0000010000000000000116 /* MotionService.swift */,
 				0A0000010000000000000108 /* SessionManager.swift */,
+				0A0000010000000000000117 /* SessionHistoryStore.swift */,
 				0A0000010000000000000106 /* TimerService.swift */,
 			);
 			path = Services;
@@ -120,6 +128,7 @@
 				0A000001000000000000010E /* ActiveSessionView.swift */,
 				0A000001000000000000030A /* Components */,
 				0A000001000000000000010D /* HomeView.swift */,
+				0A0000010000000000000118 /* PreviousSessionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,13 +248,16 @@
 				0A0000010000000000000009 /* HomeViewModel.swift in Sources */,
 				0A0000010000000000000003 /* Interval.swift in Sources */,
 				0A0000010000000000000007 /* LocationService.swift in Sources */,
+				0A0000010000000000000013 /* MotionService.swift in Sources */,
 				0A0000010000000000000004 /* RowSession.swift in Sources */,
 				0A000001000000000000000B /* RowFormatting.swift in Sources */,
 				0A0000010000000000000008 /* SessionManager.swift in Sources */,
+				0A0000010000000000000014 /* SessionHistoryStore.swift in Sources */,
 				0A000001000000000000000C /* SplitCalculator.swift in Sources */,
 				0A0000010000000000000006 /* TimerService.swift in Sources */,
 				0A0000010000000000000005 /* WorkoutPlan.swift in Sources */,
 				0A000001000000000000000F /* MetricCard.swift in Sources */,
+				0A0000010000000000000015 /* PreviousSessionsView.swift in Sources */,
 				0A0000010000000000000001 /* LiveRowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +317,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -365,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -388,6 +400,7 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = LiveRow/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -413,6 +426,7 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = LiveRow/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

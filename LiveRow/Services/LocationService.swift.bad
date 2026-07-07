@@ -118,6 +118,7 @@ final class LocationService: NSObject, ObservableObject {
 
         lastAcceptedLocation = location
 
+        // CoreLocation reports invalid GPS speed as a negative value; those samples are ignored.
         if location.speed >= 0 {
             currentSpeedMetersPerSecond = location.speed
         }

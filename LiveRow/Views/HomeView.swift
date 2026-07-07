@@ -5,7 +5,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
 
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 AppTheme.backgroundGradient
                     .ignoresSafeArea()
@@ -17,10 +17,6 @@ struct HomeView: View {
                         Text(viewModel.appName)
                             .font(.system(size: 48, weight: .bold, design: .rounded))
                             .foregroundStyle(.white)
-
-                        Text(viewModel.subtitle)
-                            .font(.headline)
-                            .foregroundStyle(AppTheme.secondaryText)
                     }
 
                     Spacer()
@@ -38,13 +34,14 @@ struct HomeView: View {
                     })
 
                     VStack(spacing: 14) {
-                        Button {
+                        NavigationLink {
+                            PreviousSessionsView()
+                                .environmentObject(sessionManager)
                         } label: {
                             Label("Previous Sessions", systemImage: "clock.arrow.circlepath")
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(SecondaryActionButtonStyle())
-                        .disabled(true)
 
                         Button {
                         } label: {
@@ -59,5 +56,6 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(.stack)
     }
 }

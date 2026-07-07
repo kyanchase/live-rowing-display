@@ -1,6 +1,6 @@
 import Foundation
 
-struct RowSession: Identifiable, Hashable {
+struct RowSession: Identifiable, Hashable, Codable {
     let id: UUID
     var startedAt: Date
     var endedAt: Date?

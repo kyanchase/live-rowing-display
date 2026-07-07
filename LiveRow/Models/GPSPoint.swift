@@ -1,7 +1,7 @@
 import CoreLocation
 import Foundation
 
-struct GPSPoint: Identifiable, Hashable {
+struct GPSPoint: Identifiable, Hashable, Codable {
     let id: UUID
     let latitude: Double
     let longitude: Double

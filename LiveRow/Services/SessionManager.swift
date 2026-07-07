@@ -11,15 +11,19 @@ enum SessionState: Equatable {
 final class SessionManager: ObservableObject {
     @Published private(set) var state: SessionState = .idle
     @Published private(set) var activeSession = RowSession()
+    @Published private(set) var completedSessions: [RowSession]
 
     let locationService: LocationService
+    let motionService: MotionService
     let timerService: TimerService
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(locationService: LocationService, timerService: TimerService) {
+    init(locationService: LocationService, motionService: MotionService, timerService: TimerService) {
         self.locationService = locationService
+        self.motionService = motionService
         self.timerService = timerService
+        completedSessions = SessionHistoryStore.load()
 
         bindServices()
     }
@@ -47,6 +51,10 @@ final class SessionManager: ObservableObject {
         )
     }
 
+    var strokeRate: Int? {
+        motionService.strokeRate
+    }
+
     var gpsStatus: GPSStatus {
         locationService.gpsStatus
     }
@@ -54,7 +62,9 @@ final class SessionManager: ObservableObject {
     func startSession() {
         activeSession = RowSession(startedAt: Date())
         locationService.reset()
+        motionService.reset()
         locationService.startTracking()
+        motionService.startTracking()
         timerService.reset()
         timerService.start()
         state = .active
@@ -65,9 +75,11 @@ final class SessionManager: ObservableObject {
         case .active:
             timerService.pause()
             locationService.pauseTracking()
+            motionService.pauseTracking()
             state = .paused
         case .paused:
             locationService.startTracking()
+            motionService.startTracking()
             timerService.start()
             state = .active
         case .idle:
@@ -76,6 +88,8 @@ final class SessionManager: ObservableObject {
     }
 
     func stopSession() {
+        guard state == .paused else { return }
+
         activeSession.endedAt = Date()
         activeSession.elapsedTime = elapsedTime
         activeSession.distanceMeters = distanceMeters
@@ -84,9 +98,12 @@ final class SessionManager: ObservableObject {
             currentSpeedMetersPerSecond
         )
         activeSession.gpsPoints = locationService.points
+        completedSessions.insert(activeSession, at: 0)
+        SessionHistoryStore.save(completedSessions)
 
         timerService.reset()
         locationService.stopTracking()
+        motionService.stopTracking()
         state = .idle
     }
 

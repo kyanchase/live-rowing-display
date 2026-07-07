@@ -28,6 +28,10 @@ struct ActiveSessionViewModel {
         RowFormatting.split(sessionManager.averageSplitSeconds)
     }
 
+    var strokeRate: String {
+        RowFormatting.strokeRate(sessionManager.strokeRate)
+    }
+
     var gpsStatusText: String {
         sessionManager.gpsStatus.displayName
     }

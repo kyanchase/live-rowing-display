@@ -1,6 +1,13 @@
 import Foundation
 
 enum RowFormatting {
+    private static let sessionDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
     static func time(_ interval: TimeInterval) -> String {
         let totalSeconds = max(Int(interval), 0)
         let hours = totalSeconds / 3_600
@@ -22,6 +29,14 @@ enum RowFormatting {
         String(format: "%.1f", max(metersPerSecond, 0))
     }
 
+    static func strokeRate(_ strokesPerMinute: Int?) -> String {
+        guard let strokesPerMinute, strokesPerMinute > 0 else {
+            return "--"
+        }
+
+        return String(strokesPerMinute)
+    }
+
     static func split(_ splitSeconds: TimeInterval?) -> String {
         guard let splitSeconds, splitSeconds.isFinite, splitSeconds > 0 else {
             return "--:--"
@@ -31,5 +46,9 @@ enum RowFormatting {
         let minutes = roundedSeconds / 60
         let seconds = roundedSeconds % 60
         return String(format: "%d:%02d", minutes, seconds)
+    }
+
+    static func sessionDate(_ date: Date) -> String {
+        sessionDateFormatter.string(from: date)
     }
 }
