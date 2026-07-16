@@ -8,7 +8,7 @@ final class TimerService: ObservableObject {
     private var startedAt: Date?
     private var accumulatedTime: TimeInterval = 0
     private var timerTask: Task<Void, Never>?
-    private let tickNanoseconds: UInt64 = 250_000_000
+    private let tickNanoseconds: UInt64 = 1_000_000_000
 
     func start() {
         guard !isRunning else { return }
@@ -43,8 +43,12 @@ final class TimerService: ObservableObject {
         timerTask?.cancel()
         timerTask = Task { [weak self] in
             while !Task.isCancelled {
+                do {
+                    try await Task.sleep(nanoseconds: self?.tickNanoseconds ?? 1_000_000_000)
+                } catch {
+                    break
+                }
                 self?.updateElapsedTime()
-                try? await Task.sleep(nanoseconds: self?.tickNanoseconds ?? 250_000_000)
             }
         }
     }

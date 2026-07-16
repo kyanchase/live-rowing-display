@@ -64,11 +64,24 @@ private struct PreviousSessionRow: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .background(AppTheme.cardBackground, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        .background(AppTheme.glassCardGradient, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .stroke(AppTheme.cardBorder, lineWidth: 1)
         )
+        .overlay(alignment: .topLeading) {
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                .stroke(AppTheme.glassHighlight, lineWidth: 1)
+                .mask(
+                    LinearGradient(
+                        colors: [.white, .clear],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+        }
+        .shadow(color: AppTheme.glassShadow, radius: 14, x: 0, y: 8)
     }
 }
 

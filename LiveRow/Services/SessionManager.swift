@@ -108,6 +108,24 @@ final class SessionManager: ObservableObject {
     }
 
     private func bindServices() {
+        timerService.objectWillChange
+            .sink { [weak self] _ in
+                self?.objectWillChange.send()
+            }
+            .store(in: &cancellables)
+
+        locationService.objectWillChange
+            .sink { [weak self] _ in
+                self?.objectWillChange.send()
+            }
+            .store(in: &cancellables)
+
+        motionService.objectWillChange
+            .sink { [weak self] _ in
+                self?.objectWillChange.send()
+            }
+            .store(in: &cancellables)
+
         locationService.$currentSpeedMetersPerSecond
             .sink { [weak self] speed in
                 guard let self else { return }
